@@ -1,39 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import MenuIcon from '@mui/icons-material/Menu';
-import ListIcon from '@mui/icons-material/List';
+import { Button } from './Button';
+import '../styles/navbar.css';
 
 function Navbar() {
-    const [click, setClick] = useState(false);
+    const [button, setButton] = useState(true);
 
-    const handleClick = () => setClick(!click);
+    const showButton = () => {
+        if (window.innerWidth <= 960) {
+            setButton(false)
+        } else {
+            setButton(true);
+        }
+    }
 
-    const closeMobileMenu = () => setClick(false);
+    useEffect(() => {
+        showButton();
+    }, []);
+
+    window.addEventListener('resize', showButton);
 
     return (
         <div className='navbar'>
-            <div className='navbar-cont'>
+            <div className='navbar-container'>
                 <Link to={'/'} className='navbar-logo'>TRAVEL</Link>
-                <div className='menu-icon' onClick={handleClick}>
-                    <i className='menu-change'>
-                        {click ? <ListIcon /> : <MenuIcon />}
-                    </i>
-                </div>
-                <ul className='ul-list'>
-                    {click ? 'nav-menu-active' : 'nav-menu'}
+                <ul className='nav-menu'>
                     <li className='nav-item'>
-                        <Link to={"/"} className='nav-links' onClick={closeMobileMenu}>Home</Link>
+                        <Link to={"/"} className='nav-links'>Home</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to={"/Services"} className='nav-links' onClick={closeMobileMenu}>Services</Link>
+                        <Link to={"/Services"} className='nav-links'>Services</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to={"/Products"} className='nav-links' onClick={closeMobileMenu}>Products</Link>
+                        <Link to={"/Products"} className='nav-links'>Products</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to={"/SignUp"} className='nav-links-mobile' onClick={closeMobileMenu}>Sign Up</Link>
+                        <Link to={"/SignUp"} className='nav-links'>Sign Up</Link>
                     </li>
                 </ul>
+                {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
             </div>
         </div>
     )
