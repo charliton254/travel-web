@@ -34,9 +34,6 @@ function Navbar() {
                     <li className='nav-item'>
                         <Link to={"/Products"} className='nav-links'>Products</Link>
                     </li>
-                    <li className='nav-item'>
-                        <Link to={"/SignUp"} className='nav-links'>Sign Up</Link>
-                    </li>
                 </ul>
                 {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
             </div>
