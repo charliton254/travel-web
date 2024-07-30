@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from './Button';
 import '../styles/navbar.css';
+import FlightIcon from '@mui/icons-material/Flight';
 
 function Navbar() {
     const [button, setButton] = useState(true);
@@ -23,7 +24,7 @@ function Navbar() {
     return (
         <div className='navbar'>
             <div className='navbar-container'>
-                <Link to={'/'} className='navbar-logo'>TRAVEL</Link>
+                <Link to={'/'} className='navbar-logo'>TRAVEL<FlightIcon /></Link>
                 <ul className='nav-menu'>
                     <li className='nav-item'>
                         <Link to={"/"} className='nav-links'>Home</Link>
